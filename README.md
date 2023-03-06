@@ -1,4 +1,4 @@
-#Movie Booking Application
+### Its-Show-Time
 
 This is a Spring Boot backend application for a movie booking system that allows users to book tickets for movies at various theaters .
 This application was created using Spring MVC, JPA, MySQL, Hibernate, and REST API, and features Swagger UI for user interaction and email integration for ticket delivery.
