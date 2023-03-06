@@ -25,4 +25,15 @@ public class UserService {
         return "user added";
 
     }
+
+    public String update(int userId,String newNo){
+        UserEntity userEntity = userRepo.findById(userId).get();
+        userEntity.setMobNo(newNo);
+        userRepo.save(userEntity);
+        return  "Mobile number Updated";
+    }
+    public String deleteUserById(int userId){
+        userRepo.deleteById(userId);
+        return "User Deleted";
+    }
 }

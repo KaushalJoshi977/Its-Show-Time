@@ -7,6 +7,7 @@ import com.example.show_time.Enums.SeatType;
 import com.example.show_time.Repositories.MovieRepo;
 import com.example.show_time.Repositories.ShowRepo;
 import com.example.show_time.Repositories.TheatreRepo;
+import com.example.show_time.ResponseDto.ShowResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,6 +99,21 @@ public class ShowService {
         }
 
         return  showSeats;
+
+    }
+    public List<ShowResponseDto> getShows(int theatreId){
+        Theatre theatre = theatreRepo.findById(theatreId).get();
+        List<Show> showList = theatre.getShowList();
+        List<ShowResponseDto> showResponseDtoList = new ArrayList<>();
+        for (Show show: showList) {
+            ShowResponseDto showResponseDto = ShowResponseDto.builder()
+                    .showDate(show.getShowDate()).showType(show.getShowType())
+                    .showTime(show.getShowTime()).id(show.getId())
+                    .movieName(show.getMovie().getMovieName()).theatreName(show.getTheatre().getName()).build();
+                showResponseDtoList.add(showResponseDto);
+        }
+
+        return showResponseDtoList;
 
     }
 }
